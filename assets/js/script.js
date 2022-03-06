@@ -9,6 +9,7 @@ var infoStorage = getStorage("infoList");
 searchButton.addEventListener("click", function(e){
   console.log("search button clicked")
   // TODO: Run function to make API call.
+  console.log(config.TEMP_KEY)
 })
 
 // Add event listener to search city buttons.
