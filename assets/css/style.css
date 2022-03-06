@@ -47,6 +47,9 @@ h2 {
 h3 {
   font-size: 150%;
 }
+h4, h5, h6 {
+  font-size: 125%;
+}
 
 header {
   display: flex;
@@ -140,6 +143,10 @@ p {
 .section-header {
   padding: 1rem 1rem;
 }
+.section-subHeader{
+  padding: 0.5rem 0;
+}
+
 .section-content {
   padding: 1rem 1rem;
 }
@@ -171,7 +178,7 @@ p {
   padding-right: 1rem;
 }
 
-.section-info {
+.info-section {
   width: 75%;
 }
 
@@ -183,6 +190,25 @@ p {
   background-color: var(--callToAction-bg-color);
 }
 
+.info-present{
+  border: 2px solid var(--quinary-bg-color);
+}
+
+.info-future{
+
+}
+
+.info-forecast-list{
+  justify-content: space-between;
+}
+
+.info-forecast-list li {
+  width: 18%;
+}
+
+.info-icon {
+  padding: 0.5rem 0;
+}
 
 .hide-on-sm {
   display: block;

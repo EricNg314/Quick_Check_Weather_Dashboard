@@ -23,7 +23,7 @@
           <h2 class="section-header color-tertiary">Search By City</h2>
           <div class="section-content flex-column">
             <input class="input-texts" type="text" id="cityname" placeholder="City Name">
-            <button id="searchScoreButton" class="color-tertiary button button-search">Search</button>
+            <button id="searchButton" class="color-tertiary button button-search">Search</button>
           </div>
           <ul class="section-content section-searchList">
             <li>
@@ -34,13 +34,66 @@
             </li>
           </ul>
         </section>
-        <section id="display" class="section section-info flex-column">
-          <h2 class="section-header color-tertiary">Current Weather Conditions</h2>
-          <div id="present" class="section-content">
-            <p>Content</p>
+        <section class="section info-section flex-column">
+          <h2 class="section-header color-tertiary">Weather Conditions</h2>
+          <div id="present" class="section-content info-present">
+            <h3 class="section-subHeader">City Name (Date)</h3>
+            <div>
+              <p>Temp: </p>
+              <p>Wind: </p>
+              <p>Humidity: </p>
+              <p>UV Index: </p>
+            </div>
           </div>
-          <div id="forecast" class="section-content">
-            <p>Content</p>
+          <div id="forecast" class="section-content info-forecast">
+            <h3 class="section-subHeader">5-Day Forecast:</h3>
+            <ul class="flex-row info-forecast-list">
+              <li class="color-tertiary">
+            <div class=section-content>
+              <h4>Date</h4>
+              <img class="info-icon" src="https://via.placeholder.com/50x50">
+              <p>Temp: </p>
+              <p>Wind: </p>
+              <p>Humidity: </p>
+            </div>
+              </li>
+              <li class="color-tertiary">
+            <div class=section-content>
+              <h4>Date</h4>
+              <img class="info-icon" src="https://via.placeholder.com/50x50">
+              <p>Temp: </p>
+              <p>Wind: </p>
+              <p>Humidity: </p>
+            </div>
+              </li>
+              <li class="color-tertiary">
+            <div class=section-content>
+              <h4>Date</h4>
+              <img class="info-icon" src="https://via.placeholder.com/50x50">
+              <p>Temp: </p>
+              <p>Wind: </p>
+              <p>Humidity: </p>
+            </div>
+              </li>
+              <li class="color-tertiary">
+            <div class=section-content>
+              <h4>Date</h4>
+              <img class="info-icon" src="https://via.placeholder.com/50x50">
+              <p>Temp: </p>
+              <p>Wind: </p>
+              <p>Humidity: </p>
+            </div>
+              </li>
+              <li class="color-tertiary">
+            <div class=section-content>
+              <h4>Date</h4>
+              <img class="info-icon" src="https://via.placeholder.com/50x50">
+              <p>Temp: </p>
+              <p>Wind: </p>
+              <p>Humidity: </p>
+            </div>
+              </li>
+            </ul>
           </div>
         </section>
       </div>
