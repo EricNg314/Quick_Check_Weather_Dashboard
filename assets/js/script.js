@@ -22,7 +22,7 @@ searchButton.addEventListener("click", function (e) {
       searchStorage = searchStorage.slice(0, 8);
     }
     console.log("search button clicked");
-    // TODO: Run function to make API call.
+    getWeatherData(city);
     saveToStorage();
     displaySearchedCities();
   }
@@ -35,6 +35,7 @@ document.addEventListener("DOMContentLoaded", function() {
       var city = e.target.innerText;
       console.log("city button clicked")
       console.log("city: ", city)
+      getWeatherData(city);
       // TODO: Run function to make API call.
     }
   })
@@ -49,37 +50,67 @@ function displaySearchedCities() {
   }
 }
 
-
 // Call display data with infoStorage as default.
 function displayDefaultInfo(){
   if(defaultInfoStorage === true){
-    displayPresent();
-    displayForecast();
+    displayPresent(infoStorage);
+    displayForecast(infoStorage);
   }
 }
 
 // TODO: Function to display data. Calls present and forecast.
 function displayInfo(){
   console.log("function displayInfo")
-  displayPresent();
-  displayForecast();
+  displayPresent(infoStorage);
+  displayForecast(infoStorage);
 }
 
 // TODO: Function to make api call.
-function getWeatherData(){
+function getWeatherData(city){
   console.log("function getWeatherData")
   // Call api
-  // Call display data
+  var apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${config.TEMP_KEY}`;
+
+  fetch(apiUrl).then(function (response) {
+    if (response.ok) {
+      response.json().then(function (data) {
+        infoStorage = data;
+        var lat = data.coord.lat;
+        var lon = data.coord.lon;
+        getUVIndex(lat, lon);
+      });
+    } else {
+      console.log("errored response: ",response)
+    }
+  });
 }
 
+function getUVIndex(lat, lon){
+  var apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly&appid=${config.TEMP_KEY}`;
+
+  fetch(apiUrl).then(function (response) {
+    if (response.ok) {
+      response.json().then(function (data) {
+        infoStorage.onecall = data
+        displayInfo()
+        saveToStorage()
+      });
+    } else {
+      console.log("errored response: ",response)
+    }
+  });
+}
 
 // TODO: Function to display present.
-function displayPresent(){
+function displayPresent(infoStorage){
   console.log("function displayPresent")
+  console.log("infoStorage: ", infoStorage)
 }
+
 // TODO: Function to display forecast.
-function displayForecast(){
+function displayForecast(infoStorage){
   console.log("function displayForecast")
+  console.log("infoStorage: ", infoStorage)
 }
 
 
