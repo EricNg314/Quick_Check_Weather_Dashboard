@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,28 +9,41 @@
   <link rel="stylesheet" href="./assets/css/style.css" />
   <title>Document</title>
 </head>
+
 <body>
-  
+
   <header id="header" class="color-secondary flex-column">
     <h1>Weather Dashboard</h1>
     <p class="header-text">A quick weather dashboard.</p>
   </header>
-  <main class="page-container color-primary">
+  <main class="page-container color-primary flex-column">
     <div class="main-container color-secondary ">
       <div class="flex-row">
-      <section id="search" class="section">
-        <h2 class="section-header color-tertiary">Search By City</h2>
-        <div class="section-content">
-          <p>Content</p>
-        </div>
-      </section>
-      <section id="display" class="section">
-        <h2 class="section-header color-tertiary">Current Weather Conditions</h2>
-        <div class="section-content">
-          <p>Content</p>
-        </div>
-      </section>
-    </div>
+        <section id="search" class="section section-search">
+          <h2 class="section-header color-tertiary">Search By City</h2>
+          <div class="section-content flex-column">
+            <input class="input-texts" type="text" id="cityname" placeholder="City Name">
+            <button id="searchScoreButton" class="color-tertiary button button-search">Search</button>
+          </div>
+          <ul class="section-content section-searchList">
+            <li>
+              <button class="color-tertiary button button-list">City</button>
+            </li>
+            <li>
+              <button class="color-tertiary button button-list">City</button>
+            </li>
+          </ul>
+        </section>
+        <section id="display" class="section section-info flex-column">
+          <h2 class="section-header color-tertiary">Current Weather Conditions</h2>
+          <div id="present" class="section-content">
+            <p>Content</p>
+          </div>
+          <div id="forecast" class="section-content">
+            <p>Content</p>
+          </div>
+        </section>
+      </div>
       <a href="#header" aria-label="Jump to top of page">Back to top.</a>
     </div>
   </main>
@@ -37,4 +51,5 @@
   <footer>Copyright © Eric Ng 2022. All rights reserved.</footer>
   <script src="./assets/js/script.js"></script>
 </body>
+
 </html>

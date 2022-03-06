@@ -7,6 +7,7 @@
   --tertiary-bg-color: rgb(60, 60, 60);
   --quaternary-bg-color: rgb(80, 80, 80);
   --quinary-bg-color: rgb(120, 120, 120);
+  --callToAction-bg-color: rgb(25, 107, 158);
 }
 
 * {
@@ -103,6 +104,23 @@ p {
   background-color: var(--quaternary-bg-color);
 }
 
+.button {
+  border-radius: .5rem;
+  /* width: 25%; */
+  padding: 0.5rem;
+  margin: 1rem 0rem;
+}
+
+.button-list {
+  width: 100%;
+  margin: 0.5rem 0rem;
+}
+
+.input-texts {
+  border-radius: .5rem;
+  padding: 0.5rem;
+}
+
 .page-container {
   display: flex;
   position: relative;
@@ -111,12 +129,12 @@ p {
 .main-container {
   max-width: 1200px;
   margin: 1rem auto 0rem auto;
-  width: 80%;
+  min-width: 80%;
   padding: 0rem 2rem 2rem 2rem;
 }
 
 .section {
-  margin-top: 3rem;
+  margin-top: 2rem;
 }
 
 .section-header {
@@ -125,7 +143,6 @@ p {
 .section-content {
   padding: 1rem 1rem;
 }
-
 
 .overlay {
   position: absolute;
@@ -138,16 +155,34 @@ p {
   top: 0;
   height: 100%;
   width: 100%;
-  background-color: rgba(0, 0, 0, .7);
+  background-color: rgba(0, 0, 0, 0.7);
   justify-content: center;
   align-items: center;
   border: 10px solid var(--quaternary-bg-color);
 }
 
-.overlay-text{
+.overlay-text {
   background: var(--tertiary-bg-color);
   padding: 1rem;
 }
+
+.section-search {
+  width: 25%;
+  padding-right: 1rem;
+}
+
+.section-info {
+  width: 75%;
+}
+
+.section-searchList {
+  border-top: 5px solid var(--quinary-bg-color);
+}
+
+.button-search {
+  background-color: var(--callToAction-bg-color);
+}
+
 
 .hide-on-sm {
   display: block;
@@ -199,36 +234,34 @@ p {
 }
 
 /* Generic Settings: Font Sizes */
- /* Small devices (landscape phones, 576px and below) */
- @media (max-width: 576px) {
+/* Small devices (landscape phones, 576px and below) */
+@media (max-width: 576px) {
   * {
     font-size: 12px;
   }
 }
 
- /* Medium devices (tablets, 768px and below) */
+/* Medium devices (tablets, 768px and below) */
 @media (max-width: 768px) {
   * {
     font-size: 12px;
   }
 }
 
- /* Large devices (desktops, 992px and below) */
+/* Large devices (desktops, 992px and below) */
 @media (max-width: 992px) {
   * {
     font-size: 14px;
   }
 }
 
- /* X-Large devices (large desktops, 1200px and below) */
+/* X-Large devices (large desktops, 1200px and below) */
 @media (max-width: 1200px) {
-
   * {
     font-size: 16px;
   }
 }
 
- /* XX-Large devices (larger desktops, 1400px and below) */
+/* XX-Large devices (larger desktops, 1400px and below) */
 @media (max-width: 1400px) {
-
 }
