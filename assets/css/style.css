@@ -1,0 +1,234 @@
+:root {
+  --primary-txt-color: #ffffff;
+  --secondary-txt-color: #ffffff;
+  --tertiary-txt-color: #ffffff;
+  --primary-bg-color: rgb(20, 20, 20);
+  --secondary-bg-color: rgb(40, 40, 40);
+  --tertiary-bg-color: rgb(60, 60, 60);
+  --quaternary-bg-color: rgb(80, 80, 80);
+  --quinary-bg-color: rgb(120, 120, 120);
+}
+
+* {
+  font-size: 18px;
+}
+
+.color-bg-primary {
+  background-color: var(--primary-bg-color);
+}
+.color-bg-secondary {
+  background-color: var(--secondary-bg-color);
+}
+.color-bg-tertiary {
+  background-color: var(--tertiary-bg-color);
+}
+.color-bg-quaternary {
+  background-color: var(--quaternary-bg-color);
+}
+
+body {
+  color: var(--primary-txt-color);
+  background-color: var(--primary-bg-color);
+}
+
+header {
+  padding: 1rem;
+}
+
+h1 {
+  font-size: 325%;
+}
+
+h2 {
+  font-size: 225%;
+}
+
+h3 {
+  font-size: 150%;
+}
+
+header {
+  display: flex;
+  align-items: center;
+}
+
+footer {
+  text-align: center;
+  margin: 1rem;
+  padding: 1rem;
+}
+
+img {
+  max-width: 100%;
+}
+
+p {
+  margin-bottom: 1rem;
+  line-height: 1.75rem;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-center {
+  justify-content: center;
+}
+
+.header-text {
+  flex: 1;
+  text-align: center;
+  margin-bottom: 0rem;
+}
+
+.color-primary {
+  color: var(--primary-txt-color);
+  background-color: var(--primary-bg-color);
+}
+.color-secondary {
+  color: var(--secondary-txt-color);
+  background-color: var(--secondary-bg-color);
+}
+.color-tertiary {
+  color: var(--tertiary-txt-color);
+  background-color: var(--tertiary-bg-color);
+}
+.color-quaternary {
+  color: var(--tertiary-txt-color);
+  background-color: var(--quaternary-bg-color);
+}
+
+.page-container {
+  display: flex;
+  position: relative;
+}
+
+.main-container {
+  max-width: 1200px;
+  margin: 1rem auto 0rem auto;
+  width: 80%;
+  padding: 0rem 2rem 2rem 2rem;
+}
+
+.section {
+  margin-top: 3rem;
+}
+
+.section-header {
+  padding: 1rem 1rem;
+}
+.section-content {
+  padding: 1rem 1rem;
+}
+
+
+.overlay {
+  position: absolute;
+  display: none;
+}
+
+.section-withHover:hover .overlay {
+  display: flex;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, .7);
+  justify-content: center;
+  align-items: center;
+  border: 10px solid var(--quaternary-bg-color);
+}
+
+.overlay-text{
+  background: var(--tertiary-bg-color);
+  padding: 1rem;
+}
+
+.hide-on-sm {
+  display: block;
+}
+
+.hide-on-xl {
+  display: none;
+}
+
+.hidden {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  * {
+    font-size: 18px;
+  }
+  header {
+    display: block;
+    align-items: unset;
+  }
+
+  .header-text {
+    padding-top: 0.5rem;
+  }
+
+  .main-container {
+    margin-top: 0rem;
+    width: 100%;
+    padding: 0rem 1rem 2rem 1rem;
+  }
+  .section:nth-of-type(1) {
+    margin-top: 1rem;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  * {
+    font-size: 16px;
+  }
+
+  .hide-on-sm {
+    display: none;
+  }
+
+  .hide-on-xl {
+    display: block;
+  }
+}
+
+/* Generic Settings: Font Sizes */
+ /* Small devices (landscape phones, 576px and below) */
+ @media (max-width: 576px) {
+  * {
+    font-size: 12px;
+  }
+}
+
+ /* Medium devices (tablets, 768px and below) */
+@media (max-width: 768px) {
+  * {
+    font-size: 12px;
+  }
+}
+
+ /* Large devices (desktops, 992px and below) */
+@media (max-width: 992px) {
+  * {
+    font-size: 14px;
+  }
+}
+
+ /* X-Large devices (large desktops, 1200px and below) */
+@media (max-width: 1200px) {
+
+  * {
+    font-size: 16px;
+  }
+}
+
+ /* XX-Large devices (larger desktops, 1400px and below) */
+@media (max-width: 1400px) {
+
+}
