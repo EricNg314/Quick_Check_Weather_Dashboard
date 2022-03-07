@@ -201,6 +201,7 @@ p {
 
 .info-forecast-list{
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .info-forecast-list li {
@@ -208,7 +209,7 @@ p {
 }
 
 .info-icon {
-  padding: 0.5rem 0;
+  /* padding: 0.5rem 0; */
   width: 50px;
 }
 
@@ -222,6 +223,17 @@ p {
 
 .hidden {
   display: none;
+}
+
+@media (max-width: 992px) {
+  .flex-col-md{
+    display: flex;
+    flex-direction: row;
+  }
+  .info-forecast-list li{
+    margin: 1rem 0;
+    flex-basis: 45%;
+  }
 }
 
 @media screen and (max-width: 768px) {
