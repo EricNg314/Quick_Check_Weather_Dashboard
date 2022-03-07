@@ -127,6 +127,7 @@ p {
 .page-container {
   display: flex;
   position: relative;
+  align-items: center;
 }
 
 .main-container {
@@ -208,6 +209,7 @@ p {
 
 .info-icon {
   padding: 0.5rem 0;
+  width: 50px;
 }
 
 .hide-on-sm {
