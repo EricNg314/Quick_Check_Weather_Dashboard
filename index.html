@@ -36,19 +36,22 @@
         </section>
         <section class="section info-section flex-column">
           <h2 class="section-header color-tertiary">Weather Conditions</h2>
-          <div id="present" class="section-content info-present">
-            <h3 class="section-subHeader">City Name (Date)</h3>
-            <div>
-              <p>Temp: <span class="temp-max"></span> - <span class="temp-min"></span></p>
-              <p>Wind:  MPH</p>
-              <p>Humidity: </p>
-              <p>UV Index: </p>
+          <div id="present" class="section-content info-present hidden">
+            <!-- <div class="flex-row">
+              <h3 class="section-subHeader">City Name (Date)</h3>
+              <img class="info-icon" src="http://openweathermap.org/img/wn/${present.weather[0].icon}@2x.png">
             </div>
+            <div>
+              <p>Temp: <span class="info-present-temp">0°F - 0°F</span></p>
+              <p>Wind:  MPH</p>
+              <p>Humidity: %</p>
+              <p>UV Index: <span class="uv-background uvIndex-0"></span></p>
+            </div> -->
           </div>
-          <div id="forecast" class="section-content info-forecast">
+          <div id="forecast" class="section-content info-forecast hidden">
             <h3 class="section-subHeader">5-Day Forecast:</h3>
             <ul class="flex-row flex-col-md flex-col-sm info-forecast-list">
-              <li class="">
+              <!-- <li class="">
                 <div class="li-content">
                   <h4>Date</h4>
                   <img class="info-icon" src="https://via.placeholder.com/50x50">
@@ -92,7 +95,7 @@
                   <p>Wind:  MPH</p>
                   <p>Humidity: </p>
                 </div>
-              </li>
+              </li> -->
             </ul>
           </div>
         </section>

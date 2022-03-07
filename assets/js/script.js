@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function() {
   })
 });
 
-// TODO: Add search buttons from storage.
+
 function displaySearchedCities() {
   searchList.innerHTML = "";
   for(var i=0; i < searchStorage.length; i++){    
@@ -107,22 +107,51 @@ function getUVIndex(lat, lon){
 function displayPresent(infoStorage){
   console.log("function displayPresent")
   console.log("infoStorage: ", infoStorage)
+  var presentEle = document.getElementById("present");
+  // var presentListEle = presentEle.getElementsByTagName("ul")[0];
+  var present = infoStorage;
+  presentEle.classList.remove("hidden");
+
+  presentEle.innerHTML = ""
+  console.log("present: ", present)
+  var uvIndex = present.onecall.daily[0].uvi;
+  var uvColor = Math.floor(uvIndex);
+
+  if(uvIndex >= 11){
+    uvColor = 11;
+  }
+
+  var uvClass = `uvIndex-${uvColor}`;
+
+  var date = luxon.DateTime.fromSeconds(present.dt).toLocaleString(luxon.DateTime.DATE_SHORT);
+    var liTileStr = `
+    <div class="flex-row">
+      <h3 class="section-subHeader">${present.name} (${date})</h3>
+      <img class="info-icon" src="http://openweathermap.org/img/wn/${present.weather[0].icon}@2x.png">
+    </div>
+    <div>
+      <p>Temp: <span class="info-present-temp">${present.main.temp_max}°F - ${present.main.temp_min}°F</span></p>
+      <p>Wind: ${present.wind.speed} MPH</p>
+      <p>Humidity: ${present.main.humidity} %</p>
+      <p>UV Index: <span class="uv-background ${uvClass}">${uvIndex}</span></p>
+    </div>`;
+    presentEle.insertAdjacentHTML('beforeend', liTileStr)
+  
 }
 
-// TODO: Function to display forecast.
 function displayForecast(infoStorage){
   console.log("function displayForecast")
   console.log("infoStorage: ", infoStorage)
   var forecastEle = document.getElementById("forecast");
   var forecastListEle = forecastEle.getElementsByTagName("ul")[0];
   var forecast = infoStorage.onecall.daily;
+  forecastEle.classList.remove("hidden");
 
   forecastListEle.innerHTML = ""
   console.log("forecast: ", forecast)
-  forecastListEle.innerHTML = "";
   for(var i=1; i < 6; i++){
   var date = luxon.DateTime.fromSeconds(forecast[i].dt).toLocaleString(luxon.DateTime.DATE_SHORT);
-    var liBtnStr = `
+    var liTileStr = `
     <li class="">
       <div class="li-content">
         <h4>${date}</h4>
@@ -132,7 +161,7 @@ function displayForecast(infoStorage){
         <p>Humidity: ${forecast[i].humidity} %</p>
       </div>
     </li>`;
-    forecastListEle.insertAdjacentHTML('beforeend', liBtnStr)
+    forecastListEle.insertAdjacentHTML('beforeend', liTileStr)
   }
 
   // https://openweathermap.org/weather-conditions#Weather-Condition-Codes-2

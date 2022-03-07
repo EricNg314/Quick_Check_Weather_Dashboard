@@ -195,6 +195,64 @@ p {
   border: 2px solid var(--quinary-bg-color);
 }
 
+.info-present-temp {
+  font-size: 200%;
+}
+
+.uv-background{
+  padding: 0.35rem;
+  border-radius: 0.25rem;
+}
+
+.uvIndex-0, .uvIndex-1, .uvIndex-2{
+  color: #ffffff;
+  text-shadow: 
+  -1px -1px 0 #000,  
+   1px -1px 0 #000,
+   -1px 1px 0 #000,
+    1px 1px 0 #000;
+  background-color: rgb(62, 167, 45);
+}
+.uvIndex-3, .uvIndex-4, .uvIndex-5{
+  color: #000;
+  /* text-shadow: 
+  -1px -1px 0 #ffffff,  
+   1px -1px 0 #ffffff,
+   -1px 1px 0 #ffffff,
+    1px 1px 0 #ffffff; */
+  background-color: rgb(255, 243, 0);
+}
+.uvIndex-6, .uvIndex-7{
+  color: #000;
+  /* text-shadow: 
+  -1px -1px 0 #000,  
+   1px -1px 0 #000,
+   -1px 1px 0 #000,
+    1px 1px 0 #000; */
+  background-color: rgb(241, 139, 0);
+}
+.uvIndex-8, .uvIndex-9, .uvIndex-10{
+  color: #ffffff;
+  text-shadow: 
+  -1px -1px 0 #000,  
+   1px -1px 0 #000,
+   -1px 1px 0 #000,
+    1px 1px 0 #000;
+  /* -webkit-text-fill-color: white; 
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black; */
+  background-color: rgb(229, 50, 16);
+}
+.uvIndex-11{
+  color: #ffffff;
+  text-shadow: 
+  -1px -1px 0 #000,  
+   1px -1px 0 #000,
+   -1px 1px 0 #000,
+    1px 1px 0 #000;
+  background-color: rgb(181, 103, 164);
+}
+
 .info-future{
 
 }
