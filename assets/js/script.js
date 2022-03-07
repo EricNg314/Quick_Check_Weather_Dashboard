@@ -8,10 +8,14 @@ var infoStorage = getStorage("infoList");
 // defaultInfoStorage is true for initial load.
 if (Object.keys(infoStorage).length > 0) {
   defaultInfoStorage = true;
+} else {
+  // To remove default of infoStorage being returned as array from getStorage.
+  infoStorage = {}
 }
 
 displaySearchedCities();
 displayDefaultInfo();
+getLocationAndDisplay()
 
 searchButton.addEventListener("click", function (e) {
   var city = document.getElementById("cityName").value;
@@ -21,7 +25,6 @@ searchButton.addEventListener("click", function (e) {
     if (searchStorage.length > 8) {
       searchStorage = searchStorage.slice(0, 8);
     }
-    console.log("search button clicked");
     getWeatherData(city);
     saveToStorage();
     displaySearchedCities();
@@ -33,14 +36,23 @@ document.addEventListener("DOMContentLoaded", function() {
   searchList.addEventListener("click", function(e){
     if(e.target.classList.contains("button-list")){
       var city = e.target.innerText;
-      console.log("city button clicked")
-      console.log("city: ", city)
       getWeatherData(city);
       // TODO: Run function to make API call.
     }
   })
 });
 
+
+function getLocationAndDisplay() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(searchByPosition);
+  } else { 
+    // "Geolocation is not supported by this browser."
+  }
+}
+function searchByPosition(position) {
+  getInfoByLatLon(position.coords.latitude, position.coords.longitude);
+}
 
 function displaySearchedCities() {
   searchList.innerHTML = "";
@@ -52,8 +64,6 @@ function displaySearchedCities() {
 
 // Call display data with infoStorage as default.
 function displayDefaultInfo(){
-  console.log("entered displayDefaultInfo")
-  console.log("defaultInfoStorage: ", defaultInfoStorage)
   if(defaultInfoStorage === true){
     displayPresent(infoStorage);
     displayForecast(infoStorage);
@@ -62,14 +72,12 @@ function displayDefaultInfo(){
 
 // TODO: Function to display data. Calls present and forecast.
 function displayInfo(){
-  console.log("function displayInfo")
   displayPresent(infoStorage);
   displayForecast(infoStorage);
 }
 
 // TODO: Function to make api call.
 function getWeatherData(city){
-  console.log("function getWeatherData")
   // Call api
   var apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${config.TEMP_KEY}`;
 
@@ -79,15 +87,16 @@ function getWeatherData(city){
         infoStorage = data;
         var lat = data.coord.lat;
         var lon = data.coord.lon;
-        getUVIndex(lat, lon);
+        getInfoByLatLon(lat, lon);
       });
     } else {
-      console.log("errored response: ",response)
+      console.log("API failed, incorrect response.")
     }
   });
 }
 
-function getUVIndex(lat, lon){
+function getInfoByLatLon(lat, lon){
+  console.log("making api call")
   var apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly&units=imperial&appid=${config.TEMP_KEY}`;
 
   fetch(apiUrl).then(function (response) {
@@ -98,22 +107,26 @@ function getUVIndex(lat, lon){
         saveToStorage()
       });
     } else {
-      console.log("errored response: ",response)
+      console.log("API failed, incorrect response.")
     }
   });
 }
 
 // TODO: Function to display present.
 function displayPresent(infoStorage){
-  console.log("function displayPresent")
-  console.log("infoStorage: ", infoStorage)
   var presentEle = document.getElementById("present");
-  // var presentListEle = presentEle.getElementsByTagName("ul")[0];
   var present = infoStorage;
   presentEle.classList.remove("hidden");
-
   presentEle.innerHTML = ""
-  console.log("present: ", present)
+
+  var cityName = "";
+  // Check if looked up by city or from location.
+  if(typeof present.name !== "undefined"){
+    cityName = present.name
+  } else {
+    cityName = "Current Location"
+  }
+
   var uvIndex = present.onecall.daily[0].uvi;
   var uvColor = Math.floor(uvIndex);
 
@@ -123,38 +136,34 @@ function displayPresent(infoStorage){
 
   var uvClass = `uvIndex-${uvColor}`;
 
-  var date = luxon.DateTime.fromSeconds(present.dt).toLocaleString(luxon.DateTime.DATE_SHORT);
-    var liTileStr = `
-    <div class="flex-row">
-      <h3 class="section-subHeader">${present.name} (${date})</h3>
-      <img class="info-icon" src="http://openweathermap.org/img/wn/${present.weather[0].icon}@2x.png">
-    </div>
-    <div>
-      <p>Temp: <span class="info-present-temp">${present.main.temp_max}°F - ${present.main.temp_min}°F</span></p>
-      <p>Wind: ${present.wind.speed} MPH</p>
-      <p>Humidity: ${present.main.humidity} %</p>
-      <p>UV Index: <span class="uv-background ${uvClass}">${uvIndex}</span></p>
-    </div>`;
-    presentEle.insertAdjacentHTML('beforeend', liTileStr)
-  
+  var date = luxon.DateTime.fromSeconds(present.onecall.current.dt).toLocaleString(luxon.DateTime.DATE_SHORT);
+  var liTileStr = `
+  <div class="flex-row">
+    <h2 class="section-subHeader">${cityName} (${date})</h2>
+    <img class="info-icon" src="http://openweathermap.org/img/wn/${present.onecall.current.weather[0].icon}@2x.png">
+  </div>
+  <div>
+    <p>Temp: <span class="info-present-temp">${present.onecall.current.temp}°F </span><span class=""> (${present.onecall.daily[0].temp.max}°F - ${present.onecall.daily[0].temp.min}°F)</span></p>
+    <p>Wind: ${present.onecall.current.wind_speed} MPH</p>
+    <p>Humidity: ${present.onecall.current.humidity} %</p>
+    <p>UV Index: <span class="uv-background ${uvClass}">${uvIndex}</span></p>
+  </div>`;
+  presentEle.insertAdjacentHTML('beforeend', liTileStr)
 }
 
 function displayForecast(infoStorage){
-  console.log("function displayForecast")
-  console.log("infoStorage: ", infoStorage)
   var forecastEle = document.getElementById("forecast");
   var forecastListEle = forecastEle.getElementsByTagName("ul")[0];
   var forecast = infoStorage.onecall.daily;
   forecastEle.classList.remove("hidden");
 
   forecastListEle.innerHTML = ""
-  console.log("forecast: ", forecast)
   for(var i=1; i < 6; i++){
   var date = luxon.DateTime.fromSeconds(forecast[i].dt).toLocaleString(luxon.DateTime.DATE_SHORT);
     var liTileStr = `
     <li class="">
       <div class="li-content">
-        <h4>${date}</h4>
+        <h3>${date}</h3>
         <img class="info-icon" src="http://openweathermap.org/img/wn/${forecast[i].weather[0].icon}@2x.png">
         <p>Temp: <span class="temp-max">${forecast[i].temp.max}°F</span> - <span class="temp-min">${forecast[i].temp.min}°F</span></p>
         <p>Wind: ${forecast[i].wind_speed} MPH</p>
@@ -163,8 +172,6 @@ function displayForecast(infoStorage){
     </li>`;
     forecastListEle.insertAdjacentHTML('beforeend', liTileStr)
   }
-
-  // https://openweathermap.org/weather-conditions#Weather-Condition-Codes-2
 }
 
 
