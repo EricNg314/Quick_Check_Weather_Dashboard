@@ -205,7 +205,12 @@ p {
 }
 
 .info-forecast-list li {
-  width: 18%;
+  flex-basis: 19%;
+  background-color: rgb(37 81 108);
+}
+
+.info-forecast-list .li-content {
+  padding: 0.75rem 0.5rem;
 }
 
 .info-icon {
@@ -231,7 +236,7 @@ p {
     flex-direction: row;
   }
   .info-forecast-list li{
-    margin: 1rem 0;
+    margin-bottom: 2rem;
     flex-basis: 45%;
   }
 }

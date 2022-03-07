@@ -6,7 +6,7 @@ var searchStorage = getStorage("searchList");
 var infoStorage = getStorage("infoList");
 
 // defaultInfoStorage is true for initial load.
-if (infoStorage.length > 0) {
+if (Object.keys(infoStorage).length > 0) {
   defaultInfoStorage = true;
 }
 
@@ -52,6 +52,8 @@ function displaySearchedCities() {
 
 // Call display data with infoStorage as default.
 function displayDefaultInfo(){
+  console.log("entered displayDefaultInfo")
+  console.log("defaultInfoStorage: ", defaultInfoStorage)
   if(defaultInfoStorage === true){
     displayPresent(infoStorage);
     displayForecast(infoStorage);
@@ -69,7 +71,7 @@ function displayInfo(){
 function getWeatherData(city){
   console.log("function getWeatherData")
   // Call api
-  var apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${config.TEMP_KEY}`;
+  var apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${config.TEMP_KEY}`;
 
   fetch(apiUrl).then(function (response) {
     if (response.ok) {
@@ -86,7 +88,7 @@ function getWeatherData(city){
 }
 
 function getUVIndex(lat, lon){
-  var apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly&appid=${config.TEMP_KEY}`;
+  var apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly&units=imperial&appid=${config.TEMP_KEY}`;
 
   fetch(apiUrl).then(function (response) {
     if (response.ok) {
@@ -111,6 +113,29 @@ function displayPresent(infoStorage){
 function displayForecast(infoStorage){
   console.log("function displayForecast")
   console.log("infoStorage: ", infoStorage)
+  var forecastEle = document.getElementById("forecast");
+  var forecastListEle = forecastEle.getElementsByTagName("ul")[0];
+  var forecast = infoStorage.onecall.daily;
+
+  forecastListEle.innerHTML = ""
+  console.log("forecast: ", forecast)
+  forecastListEle.innerHTML = "";
+  for(var i=1; i < 6; i++){
+  var date = luxon.DateTime.fromSeconds(forecast[i].dt).toLocaleString(luxon.DateTime.DATE_SHORT);
+    var liBtnStr = `
+    <li class="">
+      <div class="li-content">
+        <h4>${date}</h4>
+        <img class="info-icon" src="http://openweathermap.org/img/wn/${forecast[i].weather[0].icon}@2x.png">
+        <p>Temp: <span class="temp-max">${forecast[i].temp.max}°F</span> - <span class="temp-min">${forecast[i].temp.min}°F</span></p>
+        <p>Wind: ${forecast[i].wind_speed} MPH</p>
+        <p>Humidity: ${forecast[i].humidity} %</p>
+      </div>
+    </li>`;
+    forecastListEle.insertAdjacentHTML('beforeend', liBtnStr)
+  }
+
+  // https://openweathermap.org/weather-conditions#Weather-Condition-Codes-2
 }
 
 
