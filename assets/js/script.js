@@ -96,7 +96,7 @@ function getWeatherData(city){
 }
 
 function getInfoByLatLon(lat, lon){
-  console.log("making api call")
+  // console.log("making api call")
   var apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly&units=imperial&appid=${config.TEMP_KEY}`;
 
   fetch(apiUrl).then(function (response) {
