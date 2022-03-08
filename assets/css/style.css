@@ -193,6 +193,7 @@ p {
 
 .info-present{
   border: 2px solid var(--quinary-bg-color);
+  background-color: rgb(44 103 140);
 }
 
 .info-present-temp {
@@ -264,7 +265,7 @@ p {
 
 .info-forecast-list li {
   flex-basis: 19%;
-  background-color: rgb(37 81 108);
+  background-color: rgb(44 103 140);
 }
 
 .info-forecast-list .li-content {
