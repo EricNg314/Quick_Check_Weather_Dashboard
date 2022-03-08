@@ -140,7 +140,7 @@ function displayPresent(infoStorage){
   var liTileStr = `
   <div class="flex-row">
     <h2 class="section-subHeader">${cityName} (${date})</h2>
-    <img class="info-icon" src="http://openweathermap.org/img/wn/${present.onecall.current.weather[0].icon}@2x.png">
+    <img class="info-icon" src="http://openweathermap.org/img/wn/${present.onecall.current.weather[0].icon}@2x.png" alt="${present.onecall.current.weather[0].description}">
   </div>
   <div>
     <p>Temp: <span class="info-present-temp">${present.onecall.current.temp}°F </span><span class=""> (${present.onecall.daily[0].temp.max}°F - ${present.onecall.daily[0].temp.min}°F)</span></p>
@@ -164,7 +164,7 @@ function displayForecast(infoStorage){
     <li class="">
       <div class="li-content">
         <h3>${date}</h3>
-        <img class="info-icon" src="http://openweathermap.org/img/wn/${forecast[i].weather[0].icon}@2x.png">
+        <img class="info-icon" src="http://openweathermap.org/img/wn/${forecast[i].weather[0].icon}@2x.png" alt="${forecast[i].weather[0].description}">
         <p>Temp: <span class="temp-max">${forecast[i].temp.max}°F</span> - <span class="temp-min">${forecast[i].temp.min}°F</span></p>
         <p>Wind: ${forecast[i].wind_speed} MPH</p>
         <p>Humidity: ${forecast[i].humidity} %</p>
