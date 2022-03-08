@@ -13,7 +13,7 @@ A weather dashboard for quick review based on city or current geographic locatio
 Deployed Here: https://ericng314.github.io/Quick_Check_Weather_Dashboard/
 
 <div style="display:flex; flex-direction: row;">
- <img src="./assets/images/site_IMG.png" width="100%">
+ <img src="./assets/images/site_IMG.png" width="100%" alt="Showing the home page with the weather of New York city being searched.">
 </div>
 
 <br>
